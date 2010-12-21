@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 static Class PBXSimpleFinder = Nil;
+static Class DVWindow = Nil;
 
 @implementation BRXcodeSFF
 
@@ -17,8 +18,16 @@ static Class PBXSimpleFinder = Nil;
 {
 #pragma unused(sender)
 	
-	id sharedInstance = [PBXSimpleFinder performSelector:@selector(sharedSimpleFinder)];
-	[sharedInstance performSelector:@selector(showSimpleFind:)];
+	BOOL isDocWindow = [[NSApp keyWindow] isKindOfClass:DVWindow];
+	if (isDocWindow)
+	{
+		[NSApp sendAction:@selector(showIncrementalFindBar:) to:nil from:self];
+	}
+	else
+	{
+		id sharedInstance = [PBXSimpleFinder performSelector:@selector(sharedSimpleFinder)];
+		[sharedInstance performSelector:@selector(showSimpleFind:)];
+	}
 }
 
 + (NSMenuItem *) findFind:(NSMenu *)menu
@@ -46,11 +55,12 @@ static Class PBXSimpleFinder = Nil;
 + (BOOL) install
 {
 	PBXSimpleFinder = NSClassFromString(@"PBXSimpleFinder");
+	DVWindow = NSClassFromString(@"DVWindow");
 	Method sharedSimpleFinder = class_getClassMethod(PBXSimpleFinder, @selector(sharedSimpleFinder));
 	Method showSimpleFind = class_getInstanceMethod(PBXSimpleFinder, @selector(showSimpleFind:));
 	if (PBXSimpleFinder && sharedSimpleFinder && showSimpleFind)
 	{
-		NSMenu *mainMenu = [[NSApplication sharedApplication] mainMenu];
+		NSMenu *mainMenu = [NSApp mainMenu];
 		
 		NSMenuItem *item = [self findFind:mainMenu];
 		if (item)
