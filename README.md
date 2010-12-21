@@ -2,10 +2,10 @@ About
 =====
 
 You don't like the new find bar?  
-![Incremental Find Bar](https://github.com/0xced/XcodeSFF/screenshots/IncrementalFindBar.png "Incremental Find Bar")
+![Incremental Find Bar](https://github.com/0xced/XcodeSFF/raw/master/screenshots/IncrementalFindBar.png "Incremental Find Bar")
 
 Get back the find window!  
-![Single File Find](https://github.com/0xced/XcodeSFF/screenshots/SingleFileFind.png "Single File Find")
+![Single File Find](https://github.com/0xced/XcodeSFF/raw/master/screenshots/SingleFileFind.png "Single File Find")
 
 Installation
 ============
