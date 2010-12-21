@@ -9,16 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BRXcodeSFF : NSObject
-{
-	
-}
 
-+ (void)load;
-+ (BRXcodeSFF*)sharedInstance;
-
-- (id)init;
-- (IBAction)singleFileFind:(id)sender;
-- (NSMenuItem*)findFind:(NSMenu*)menu;
++ (void) pluginDidLoad:(NSBundle *)plugin;
 
 @end
-
